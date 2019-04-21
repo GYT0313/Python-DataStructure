@@ -19,13 +19,12 @@ class LinkedBST(AbstractCollection):
         def recurse(node):
             if node is None:
                 return None
-            elif node.data == item:
+            elif item == node.data:
                 return node.data
             elif item < node.data:
-                recurse(node.left)
+                return recurse(node.left)
             else:
-                recurse(node.right)
-
+                return recurse(node.right)
         return recurse(self._root)
 
     def __iter__(self):
@@ -164,9 +163,3 @@ class LinkedBST(AbstractCollection):
         else:
             self._root = pre_root.left
         return item_removed
-
-
-
-
-
-
