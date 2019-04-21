@@ -9,7 +9,7 @@ from bstnode import BSTNode
 class LinkedBST(AbstractCollection):
     """基于链表的二叉搜索树"""
 
-    def __init__(self, source_collection):
+    def __init__(self, source_collection=None):
         self._root = None
         AbstractCollection.__init__(self, source_collection)
 
