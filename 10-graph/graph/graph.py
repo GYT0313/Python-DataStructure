@@ -96,8 +96,6 @@ class LinkedVertex(object):
 
     def get_edge_to(self, to_vertex):
         """返回该顶点与目标顶点的边"""
-        edge = LinkedEdge(self, to_vertex)
-        # return self._edge_list[self._edge_list.index(edge)]
         for edge in self._edge_list:
             if edge._vertex1 == self and edge._vertex2 == to_vertex:
                 return edge
@@ -118,12 +116,14 @@ class LinkedVertex(object):
 
     def remove_edge_to(self, to_vertex):
         """删除指定顶点的边"""
-        edge = LinkedEdge(self, to_vertex)
-        if edge in self._edge_list:
-            self._edge_list.remove(edge)
-            return True
-        else:
-            return False
+        removed_edge = LinkedEdge(self, to_vertex)
+        for edge in self._edge_list:
+            # 源顶点与目标顶点是否相同
+            if removed_edge._vertex1 == edge._vertex1 and \
+                removed_edge._vertex2 == edge._vertex2:
+                self._edge_list.remove(edge)
+                return True
+        return False
 
 
 class LinkedDirectedGraph(AbstractCollection):
@@ -182,7 +182,7 @@ class LinkedDirectedGraph(AbstractCollection):
 
     def remove_vertex(self, label):
         """成功移除返回True"""
-        removed_vertex = self._vertices.pop(label, None)
+        removed_vertex = self._vertices.pop(label)
         if removed_vertex is None:
             return False
 
