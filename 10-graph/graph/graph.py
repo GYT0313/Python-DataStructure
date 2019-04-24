@@ -206,6 +206,10 @@ class LinkedDirectedGraph(AbstractCollection):
         from_vertex.add_edge_to(to_vertex, weight)
         self._edge_count += 1
 
+    def contain_edge(self, from_label, to_label):
+        """是否包含某条边"""
+        return self.get_edge(from_label, to_label) != None
+
     def get_edge(self, from_label, to_label):
         """获取一条边"""
         from_vertex = self.get_vertex(from_label)
